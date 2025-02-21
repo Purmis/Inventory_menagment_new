@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj Użytkownika - M&M GOLD{% endblock %}
+
+{% block content %}
+<div class="mobile-friendly-container">
+    <h2 class="text-center mb-4">Dodaj użytkownika</h2>
+    
+    <div class="user-form">
+        <form method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nazwa użytkownika (login)</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="full_name" class="form-label">Imię i nazwisko</label>
+                <input type="text" class="form-control" id="full_name" name="full_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="position" class="form-label">Stanowisko</label>
+                <input type="text" class="form-control" id="position" name="position" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="location" class="form-label">Lokalizacja</label>
+                <select class="form-select" id="location" name="location" required>
+                    <option value="">Wybierz lokalizację</option>
+                    {% for location in User.get_locations() %}
+                    <option value="{{ location }}">{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Hasło</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin">
+                <label class="form-check-label" for="is_admin">Administrator</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Dodaj Użytkownika</button>
+            <a href="{{ url_for('auth.user_list') }}" class="btn btn-secondary">Anuluj</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

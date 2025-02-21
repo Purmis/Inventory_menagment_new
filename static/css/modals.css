@@ -1,0 +1,24 @@
+.modal-content {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.5);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+.modal-body {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}

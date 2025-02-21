@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.nazwa }} - M&M GOLD{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>{{ product.nazwa }}</h1>
+    </div>
+    <div class="col text-end">
+        <a href="{{ url_for('product_list') }}" class="btn btn-secondary">Powrót</a>
+        <a href="{{ url_for('product_edit', product_id=product.produkt_id) }}" class="btn btn-warning">Edytuj</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Zdjęcie produktu</h5>
+            </div>
+            <div class="card-body text-center">
+                {% if product.product_image_path %}
+                    <div class="product-image-container">
+                        <img src="{{ url_for('static', filename=product.product_image_path) }}" 
+                             class="img-fluid product-image" 
+                             alt="Zdjęcie produktu"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    </div>
+                    <div class="overlay"></div>
+                    <p style="display: none;">Błąd ładowania zdjęcia</p>
+                {% else %}
+                <p>Brak zdjęcia</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Zdjęcie certyfikatu</h5>
+            </div>
+            <div class="card-body text-center">
+                {% if product.cert_image_path %}
+                    <div class="product-image-container">
+                        <img src="{{ url_for('static', filename=product.cert_image_path) }}" 
+                             class="img-fluid product-image" 
+                             alt="Zdjęcie certyfikatu">
+                    </div>
+                    <div class="overlay"></div>
+                {% else %}
+                <p>Brak certyfikatu</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Informacje podstawowe</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr><th>ID produktu:</th><td>{{ product.produkt_id }}</td></tr>
+                    <tr><th>Kolekcja:</th><td>{{ product.kolekcja }}</td></tr>
+                    <tr><th>Kategoria:</th><td>{{ product.kategoria }}</td></tr>
+                    <tr><th>Masa całkowita:</th><td>{{ product.masa_calkowita }} g</td></tr>
+                    <tr><th>Cena:</th><td>{{ "%.2f"|format(product.cena) }} PLN</td></tr>
+                    <tr><th>Kolor złota:</th><td>{{ product.kolor_zlota }}</td></tr>
+                    <tr><th>Rozmiar:</th><td>{{ product.rozmiar }}</td></tr>
+                    <tr><th>Lokalizacja:</th><td>{{ product.lokalizacja }}</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if product.ma_diamenty %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Informacje o diamentach</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr><th>Masa diamentu:</th><td>{{ product.masa_diamentu }} ct</td></tr>
+                    <tr><th>Czystość:</th><td>{{ product.czystosc }}</td></tr>
+                    <tr><th>Kolor:</th><td>{{ product.kolor }}</td></tr>
+                    <tr><th>Szlif:</th><td>{{ product.szlif }}</td></tr>
+                    <tr><th>Kamienie dodatkowe:</th><td>{{ product.kamienie_dodatkowe }}</td></tr>
+                    <tr><th>Kolor kamieni:</th><td>{{ product.kolor_kamieni }}</td></tr>
+                    <tr><th>Jakość kamieni:</th><td>{{ product.jakosc_kamieni }}</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.product-image-container').forEach(container => {
+    container.addEventListener('mousemove', (e) => {
+        // Obliczamy pozycję kursora względem kontenera
+        const rect = container.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        // Ustawiamy punkt początkowy transformacji
+        container.style.setProperty('--x', x + '%');
+        container.style.setProperty('--y', y + '%');
+    });
+});
+</script>
+{% endblock %}
