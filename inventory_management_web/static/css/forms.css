@@ -1,0 +1,76 @@
+.form-control, .form-select {
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--border-color);
+    color: var(--text-color) !important;
+    border-radius: 15px;
+    padding: 0.75rem 1rem;
+    height: 45px;
+}
+
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+.form-select option {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 10px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(196, 166, 97, 0.25);
+}
+
+.form-label {
+    color: var(--text-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Transfer form specific */
+.transfer-form .form-select {
+    width: 100%;
+    min-width: 250px; /* Zwiększona szerokość */
+    background-color: var(--background-color);
+}
+
+.transfer-form .btn {
+    width: 100%;
+    margin: 0;
+}
+
+.product-actions .btn {
+    flex: 1;
+    min-width: 120px; /* Minimalna szerokość przycisków */
+    margin: 0.25rem;
+}
+
+/* Search form improvements */
+.search-form {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.search-form .form-control,
+.search-form .form-select {
+    height: 45px;
+    font-size: 1rem;
+    background-color: var(--background-color);
+}
+
+.search-form .form-select option {
+    padding: 8px 12px;
+}

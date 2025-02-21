@@ -1,0 +1,13 @@
+/* Główny plik importujący wszystkie style */
+@import 'variables.css';
+@import 'base.css';
+@import 'navigation.css';
+@import 'buttons.css';
+@import 'forms.css';
+@import 'tables.css';
+@import 'cards.css';
+@import 'modals.css';
+@import 'products.css';
+@import 'transfers.css';
+@import 'responsive.css';
+@import 'users.css';
